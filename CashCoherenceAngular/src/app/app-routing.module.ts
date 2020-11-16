@@ -3,19 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
-import {Role} from './_models/role';
-import {AuthGuard} from './_guards/auth.guard';
-import {AdminComponent} from './admin/admin.component';
 
-const routes: Routes = [{path: '', component: HomeComponent, canActivate: [AuthGuard]}, {path: 'login', component: LoginComponent},
+
+const routes: Routes = [
+    // {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: '', component: HomeComponent },
+  {path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    canActivate: [AuthGuard],
-    // The prof route also sets the roles data property to [Role.professor] so only admin users can access it.
-    data: { roles: [Role.professor] }
-  },
   { path: '**', redirectTo: '' }];
 
 @NgModule({

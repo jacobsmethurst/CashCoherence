@@ -1,12 +1,9 @@
 <div class="course-list-container">
 
-  <course-component class="card-item"  *ngFor="let course of courses" [course]="course" (deleteEvent) = "deleteCourse($event)"></course-component>
-
-
+  <transaction-component class="card-item" *ngFor="let tr of transactions" [transaction]="tr"
+                         (deleteEvent)="deleteTransaction($event)" ></transaction-component>
 
 </div>
-
-
 
 <div class="fab-container">
   <button mat-flat-button color="primary"  matTooltip="Add new class" (click)="createCourse()">

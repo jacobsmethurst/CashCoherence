@@ -2,15 +2,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Course } from '../_models/course';
+import { Transaction } from '../_models/Transaction';
+import {Observable} from "rxjs";
 
 @Injectable({ providedIn: 'root' })
-export class CourseService {
+export class TransactionService {
     constructor(private http: HttpClient) { }
 
     getAll() {
-        console.log('getAll()');
-        return this.http.get<Course[]>(`http://localhost:4000/course/getcourses`);
+        return new Observable(subscriber => {
+            subscriber.next(["test", "test2"]);
+        });
+        // return this.http.get<Transaction[]>(`http://localhost:4000/transaction/gettransaction`);
     }
 
     add() {

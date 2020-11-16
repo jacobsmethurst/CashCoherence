@@ -14,6 +14,7 @@ import { AdminComponent } from './admin/admin.component';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './_interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './_interceptors/error.interceptor';
+import { TransactionComponent } from './transaction/transaction.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {ErrorInterceptor} from './_interceptors/error.interceptor';
     HomeComponent,
     CourseComponent,
     RegisterComponent,
-    AdminComponent
+    AdminComponent,
+    TransactionComponent
   ],
     imports: [
         BrowserModule,

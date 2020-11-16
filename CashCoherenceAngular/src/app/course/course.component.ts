@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material';
-import {Course} from '../_models/course';
+import {Transaction} from '../_models/Transaction';
 import {NotificationService} from '../_services/notification.service';
 
 
@@ -11,7 +11,7 @@ import {NotificationService} from '../_services/notification.service';
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
-  @Input() course: Course;
+  @Input() course: Transaction;
   @Output() deleteEvent = new EventEmitter<string>();
 
 

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 
-import {Course} from '../_models/course';
+import {Transaction} from '../_models/Transaction';
 import {NotificationService} from '../_services/notification.service';
-import {CourseService} from '../_services/course.service';
+import {TransactionService} from '../_services/transaction.service';
 import {first} from 'rxjs/operators';
 
 @Component({ templateUrl: 'home.component.html' ,
@@ -10,46 +10,43 @@ import {first} from 'rxjs/operators';
   styleUrls: ['home.component.css']})
 export class HomeComponent implements OnInit {
 
-
-
-  courses: Course[] = [];
+  transactions: Transaction[] = [];
     constructor(
-    private courseService: CourseService,
+    private transactionService: TransactionService,
     private notifService: NotificationService,
   ) {}
 
   ngOnInit() {
-    this.loadAllClasses();
-      }
+      this.loadAllTransactions();
+    }
 
 
-  private loadAllClasses() {
-    console.log('loadAllClase()');
-    this.courseService.getAll().subscribe(
-      courses => {this.courses = courses; },
+  private loadAllTransactions() {
+    this.transactionService.getAll().subscribe(
+      transactions => {this.transactions = transactions; },
         error => {this.notifService.showNotif(error, 'error'); });
   }
 
-  createCourse() {
-    this.courseService.add().pipe(first())
+  createTransaction() {
+    this.transactionService.add().pipe(first())
         .subscribe(
             data => {
               //  this.alertService.success('Registration successful', true);
               this.notifService.showNotif(data, 'response');
-              this.courses = null;
-              this.loadAllClasses();
+              this.transactions = null;
+              this.loadAllTransactions();
             },
             error => {
-              console.log('Error:', error);
-              this.notifService.showNotif(error);
+                console.log('Error:', error);
+                this.notifService.showNotif(error);
               });
   }
 
 
-  deleteCourse(id: string) {
-    this.courseService.delete(id).pipe(first()).subscribe(() => {
-      this.courses = null;
-      this.loadAllClasses();
+  deleteTransaction(id: string) {
+    this.transactionService.delete(id).pipe(first()).subscribe(() => {
+      this.transactions = null;
+      this.loadAllTransactions();
     });
   }
 }
