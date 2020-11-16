@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   private loadAllTransactions() {
     this.transactionService.getAll().subscribe(
-      transactions => {this.transactions = transactions; },
+      transactions => this.transactions = transactions,
         error => {this.notifService.showNotif(error, 'error'); });
   }
 

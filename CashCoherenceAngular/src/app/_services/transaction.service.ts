@@ -11,7 +11,15 @@ export class TransactionService {
 
     getAll() {
         return new Observable(subscriber => {
-            subscriber.next(["test", "test2"]);
+            subscriber.next([
+                {
+                    name: 'First Transaction',
+                    amount: '1650.50',
+                    category: 'Rent',
+                    createdDate: new Date(),
+                    id: 'j2398rj2389ru23891111'
+                }
+            ]);
         });
         // return this.http.get<Transaction[]>(`http://localhost:4000/transaction/gettransaction`);
     }

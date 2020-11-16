@@ -1,1 +1,12 @@
-<p>transaction works!</p>
+<mat-card class="transaction-card">
+    <mat-card-content>
+        <span>{{ transaction.name }}</span>
+        <span>{{ transaction.amount }}</span>
+        <span>{{ transaction.createdDate }}</span>
+        <span>{{ transaction.category }}</span>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="{}"><i class="material-icons">edit</i></button>
+        <button mat-button (click)="{}"><i class="material-icons">delete</i></button>
+    </mat-card-actions>
+</mat-card>
