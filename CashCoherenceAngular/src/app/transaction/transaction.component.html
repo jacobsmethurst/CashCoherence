@@ -1,7 +1,7 @@
 <mat-card class="transaction-card">
     <mat-card-content>
         <span>{{ transaction.name }}</span>
-        <span>{{ transaction.amount }}</span>
+        <span [className]="transaction.expense ? 'expense' : 'income'">{{ transaction.amount }}</span>
         <span>{{ transaction.createdDate }}</span>
         <span>{{ transaction.category }}</span>
     </mat-card-content>

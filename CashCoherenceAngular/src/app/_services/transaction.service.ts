@@ -14,6 +14,7 @@ export class TransactionService {
             subscriber.next([
                 {
                     name: 'First Transaction',
+                    expense: true,
                     amount: '1650.50',
                     category: 'Rent',
                     createdDate: new Date(),

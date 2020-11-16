@@ -1,3 +1,11 @@
 .transaction-card {
     width: 90%;
 }
+
+.expense {
+    color: darkred;
+}
+
+.income {
+    color: darkgreen
+}
