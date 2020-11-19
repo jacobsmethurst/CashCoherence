@@ -12,6 +12,10 @@ import { GraphsComponent } from './graphs/graphs.component';
 import { SharedComponent } from './shared/shared.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { IncomeComponent } from './income/income.component';
+import { ExpenseComponent } from './expense/expense.component';
+import { SavingComponent } from './saving/saving.component';
+import { SavinggoalComponent } from './savinggoal/savinggoal.component';
 
 
 @NgModule({
@@ -21,7 +25,11 @@ import { RegisterComponent } from './register/register.component';
     GraphsComponent,
     SharedComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    IncomeComponent,
+    ExpenseComponent,
+    SavingComponent,
+    SavinggoalComponent
   ],
   imports: [
     BrowserModule,
