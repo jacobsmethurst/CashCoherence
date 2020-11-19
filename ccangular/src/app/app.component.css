@@ -19,6 +19,8 @@
     border-bottom: none;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
     color: #ffffff;
     width: 175px;
     height: 100%;

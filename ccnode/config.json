@@ -1,0 +1,4 @@
+{
+    "secret": "secret string for my webapp",
+    "connectionString": "mongodb://localhost/cctest1"
+}
