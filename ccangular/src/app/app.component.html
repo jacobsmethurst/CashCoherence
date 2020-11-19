@@ -1,9 +1,9 @@
-<div id="mainToolbar">
+<div id="mainToolbar" *ngIf="isUser">
   <div id="left">
     <button mat-button routerLink="/transactions" routerLinkActive="activeTab">Transactions</button>
     <button mat-button routerLink="/graphs" routerLinkActive="activeTab">Graphs</button>
     <button mat-button routerLink="/shared" routerLinkActive="activeTab">Shared Goals</button>
-    <button mat-button (click)="logout()">Logout</button>
+    <button mat-button (click)="logout()">Logout ({{ isUser.username }})</button>
   </div>
 
   <div id="right">

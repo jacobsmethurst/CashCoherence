@@ -1,0 +1,28 @@
+table {
+    width: 96%;
+    position: fixed;
+    left: 50%;
+    top: 100px;
+    margin-left: -48%;
+    border-radius: 10px;
+    overflow: hidden !important;
+}
+
+.mat-column-date, .mat-column-name, .mat-column-amount, .mat-column-category {
+    width: 21%;
+}
+
+.neg {
+    color: red !important;
+    font-weight: bold;
+}
+
+.pos {
+    color: darkgreen !important;
+    font-weight: bold;
+}
+
+.mat-cell {
+    font-size: 20px;
+}
+
