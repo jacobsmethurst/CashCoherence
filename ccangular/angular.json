@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ccangular"
+    }
+  },
+  "defaultProject": "ccangular",
+  "cli": {
+    "analytics": false
+  }
 }
