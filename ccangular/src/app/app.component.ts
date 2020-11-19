@@ -10,7 +10,7 @@ import { AuthService } from './_services/auth.service';
 })
 export class AppComponent {
   title = 'ccangular';
-  lastUpdated = new Date();
+  lastUpdated = new Date().toLocaleString();
   currentUser: User;
 
   constructor(private router: Router, private authService: AuthService) {

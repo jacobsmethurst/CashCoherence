@@ -27,7 +27,7 @@ export class AuthService {
                     this.currentUserSubject.next(user);
                 }
                 
-                console.log(this.currentUser);
+                console.log('Logged in as: ' + this.currentUserValue.username);
                 return user;
             }));
     }

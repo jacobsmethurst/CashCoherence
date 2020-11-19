@@ -53,9 +53,11 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          console.log('Successfully registered a new user.');
           this.router.navigate(['/login']);
         },
         error => {
+          console.log('Error while registering user: ', error);
           this.loading = false;
         }
       );
