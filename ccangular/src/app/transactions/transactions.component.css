@@ -12,17 +12,33 @@ table {
     width: 21%;
 }
 
-.neg {
+.expense {
     color: red !important;
     font-weight: bold;
 }
 
-.pos {
+.income {
     color: darkgreen !important;
+    font-weight: bold;
+}
+
+.saving {
+    color: #000f2b !important;
     font-weight: bold;
 }
 
 .mat-cell {
     font-size: 20px;
+}
+
+#menuButton {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    background-color: #000f2b;
+}
+
+#addIcon {
+    font-weight: bold;
 }
 

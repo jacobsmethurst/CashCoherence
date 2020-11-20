@@ -14,14 +14,23 @@ export class TransactionsComponent implements AfterViewInit {
     {
       name: 'test',
       date: new Date().toDateString(),
-      amount: 50.0,
-      category: 'testcat'
+      amount: 50.2,
+      type: 'income',
+      category: ''
     },
     {
       name: 'test2',
       date: new Date().toDateString(),
-      amount: -55.0,
+      amount: 55.0,
+      type: 'expense',
       category: 'newcat'
+    },
+    {
+      name: 'savingtest',
+      date: new Date().toDateString(),
+      amount: 200.23,
+      type: 'saving',
+      category: ''
     }
   ];
 
@@ -36,8 +45,16 @@ export class TransactionsComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  getAbs(i: number): number {
-    return Math.abs(i);
+  getCategory(transaction): string {
+    if (transaction.category) {
+      return transaction.category;
+    }
+
+    if (transaction.type === 'income') {
+      return 'Income';
+    }
+
+    return 'Saving';
   }
 
 }

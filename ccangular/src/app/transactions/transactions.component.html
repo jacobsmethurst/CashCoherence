@@ -12,12 +12,12 @@
 
     <ng-container matColumnDef="amount">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
-        <td mat-cell *matCellDef="let transaction" [ngClass]="transaction.amount > 0 ? 'pos' : 'neg'">{{ getAbs(transaction.amount) }}</td>
+        <td mat-cell *matCellDef="let transaction" [ngClass]="transaction.type">{{ transaction.amount.toFixed(2) }}</td>
     </ng-container>
 
     <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
-        <td mat-cell *matCellDef="let transaction">{{ transaction.category }}</td>
+        <td mat-cell *matCellDef="let transaction">{{ getCategory(transaction) }}</td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
@@ -31,3 +31,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<button mat-fab [matMenuTriggerFor]="newTransactionMenu" id="menuButton"><mat-icon id="addIcon">add</mat-icon></button>
+<mat-menu #newTransactionMenu yPosition="above">
+    <button mat-menu-item>New income</button>
+    <button mat-menu-item>New expense</button>
+    <button mat-menu-item>New saving</button>
+</mat-menu>
