@@ -8,10 +8,10 @@
             <div class="formGroup">
                 <mat-form-field>
                     <input matInput placeholder="First Name" type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
-                        <mat-hint *ngIf="submitted && f.firstName.errors">
-                            <mat-hint *ngIf="f.firstName.errors.required">First Name is required</mat-hint>
-                            <mat-hint *ngIf="f.firstName.errors.pattern">First Name is using illegal characters.</mat-hint>
-                        </mat-hint>
+                    <mat-hint *ngIf="submitted && f.firstName.errors">
+                        <mat-hint *ngIf="f.firstName.errors.required">First Name is required</mat-hint>
+                        <mat-hint *ngIf="f.firstName.errors.pattern">First Name is using illegal characters.</mat-hint>
+                    </mat-hint>
                 </mat-form-field>
             </div>
             

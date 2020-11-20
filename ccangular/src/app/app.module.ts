@@ -16,6 +16,7 @@ import { IncomeComponent } from './income/income.component';
 import { ExpenseComponent } from './expense/expense.component';
 import { SavingComponent } from './saving/saving.component';
 import { SavinggoalComponent } from './savinggoal/savinggoal.component';
+import { IncomeformComponent } from './incomeform/incomeform.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { SavinggoalComponent } from './savinggoal/savinggoal.component';
     IncomeComponent,
     ExpenseComponent,
     SavingComponent,
-    SavinggoalComponent
+    SavinggoalComponent,
+    IncomeformComponent
   ],
   imports: [
     BrowserModule,

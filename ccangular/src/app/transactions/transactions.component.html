@@ -34,7 +34,7 @@
 
 <button mat-fab [matMenuTriggerFor]="newTransactionMenu" id="menuButton"><mat-icon id="addIcon">add</mat-icon></button>
 <mat-menu #newTransactionMenu yPosition="above">
-    <button mat-menu-item>New income</button>
+    <button mat-menu-item routerLink="/incomeform">New income</button>
     <button mat-menu-item>New expense</button>
     <button mat-menu-item>New saving</button>
 </mat-menu>

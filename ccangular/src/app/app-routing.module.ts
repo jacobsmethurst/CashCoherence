@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { GraphsComponent } from './graphs/graphs.component';
+import { IncomeformComponent } from './incomeform/incomeform.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SharedComponent } from './shared/shared.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: 'transactions', component: TransactionsComponent, canActivate: [AuthGuard] },
     { path: 'graphs', component: GraphsComponent, canActivate: [AuthGuard] },
     { path: 'shared', component: SharedComponent, canActivate: [AuthGuard] },
+    { path: 'incomeform', component: IncomeformComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: 'transactions' }
 ];
 

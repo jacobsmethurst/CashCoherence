@@ -1,0 +1,47 @@
+<form [formGroup]="incomeForm" class="incomeForm" (ngSubmit)="onSubmit()">
+    <mat-card class="incomeCard">
+        <mat-card-header>
+            <mat-card-title>Log new income</mat-card-title>            
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="formGroup">
+                <mat-form-field>
+                    <input matInput placeholder="Name/description" type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                    <mat-hint *ngIf="submitted && f.name.errors">
+                        <mat-hint *ngIf="f.name.errors.required">Income name/description is required</mat-hint>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+
+            <div class="formGroup">
+                <mat-form-field>
+                    <input matInput placeholder="Amount" type="number" formControlName="amount" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }">
+                    <mat-hint *ngIf="submitted && f.amount.errors">
+                        <mat-hint *ngIf="f.amount.errors.required">Amount is required</mat-hint>
+                        <mat-hint *ngIf="f.amount.errors.min">Amount must be positive</mat-hint>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+
+            <div class="formGroup">
+                <mat-form-field>
+                    <mat-label>Date deposited</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.date.errors }">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-hint *ngIf="submitted && f.date.errors">
+                        <mat-hint *ngIf="f.date.errors.required">Date is required</mat-hint>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button mat-button [disabled]="loading">Log income</button>
+            <button mat-button routerLink="/transactions">Cancel</button>
+            <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+        </mat-card-actions>
+    </mat-card>
+</form>
