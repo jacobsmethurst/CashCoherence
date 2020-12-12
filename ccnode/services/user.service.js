@@ -24,13 +24,25 @@ async function authenticate({ username, password }) {
 
 async function getById(id) {
     // return await User.findOne({ _id: id }).populate('incomes expenses goals savings');
-    return await User.findOne({ _id: id }).populate('incomes expenses goals').populate({
-        path: 'savings',
-        populate: {
-            path: 'goal',
-            model: 'SavingGoal'
-        }
-    });
+    return await User.findOne({ _id: id })
+        .populate('incomes expenses goals')
+        .populate({
+            path: 'savings',
+            populate: {
+                path: 'goal',
+                model: 'SavingGoal'
+            }
+        })
+        .populate({
+            path: 'goals',
+            populate: {
+                path: 'users',
+                populate: {
+                    path: 'savings',
+                    model: 'Saving'
+                }
+            }
+        });
 }
 
 async function addUser(userParam) {

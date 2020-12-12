@@ -1,1 +1,14 @@
-<p>goals works!</p>
+<mat-card class="goalSelectCard">
+    <mat-form-field>
+        <mat-select matInput placeholder="Goal" type="text" [formControl]="selectGoalFormControl" (selectionChange)="updateData()">
+            <mat-option *ngFor="let goal of goals" value="{{ goal.id }}">{{ goal.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-card-header>Saved: {{ totalSaved }}</mat-card-header>
+    <mat-card-header>Remaining: {{ totalRemaining <= 0 ? 'Goal met!' : totalRemaining }}</mat-card-header>
+    <mat-card-header>Deadline: {{ deadline }}</mat-card-header>
+</mat-card>
+
+<p-chart width="600" height="600" type="pie" [data]="pieData"></p-chart>
+
