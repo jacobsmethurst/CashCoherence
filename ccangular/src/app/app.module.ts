@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -18,6 +18,10 @@ import { SavingComponent } from './saving/saving.component';
 import { SavinggoalComponent } from './savinggoal/savinggoal.component';
 import { IncomeformComponent } from './incomeform/incomeform.component';
 
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { ErrorInterceptor } from './_interceptors/error.interceptor';
+import { ExpenseformComponent } from './expenseform/expenseform.component';
+import { SavingformComponent } from './savingform/savingform.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,9 @@ import { IncomeformComponent } from './incomeform/incomeform.component';
     ExpenseComponent,
     SavingComponent,
     SavinggoalComponent,
-    IncomeformComponent
+    IncomeformComponent,
+    ExpenseformComponent,
+    SavingformComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,10 @@ import { IncomeformComponent } from './incomeform/incomeform.component';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

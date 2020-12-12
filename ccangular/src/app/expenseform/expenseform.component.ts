@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../_services/user.service';
-import { IncomeService } from '../_services/income.service';
 import { first } from 'rxjs/operators';
+import { ExpenseService } from '../_services/expense.service';
 
 @Component({
-  selector: 'app-incomeform',
-  templateUrl: './incomeform.component.html',
-  styleUrls: ['./incomeform.component.css']
+  selector: 'app-expenseform',
+  templateUrl: './expenseform.component.html',
+  styleUrls: ['./expenseform.component.css']
 })
-export class IncomeformComponent implements OnInit {
+export class ExpenseformComponent implements OnInit {
 
-  incomeForm: FormGroup;
+  expenseForm: FormGroup;
   loading = false;
   submitted = false;
   today = new Date();
@@ -20,40 +19,39 @@ export class IncomeformComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private userService: UserService,
-    private incomeService: IncomeService
+    private expenseService: ExpenseService
   ) { }
 
   ngOnInit(): void {
-    this.incomeForm = this.formBuilder.group({
+    this.expenseForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       amount: ['', [Validators.required, Validators.min(0)]],
+      category: ['', [Validators.required]],
       date: ['', [Validators.required]]
-      
     });
   }
 
   get f() {
-    return this.incomeForm.controls;
+    return this.expenseForm.controls;
   }
 
   onSubmit() {
     this.submitted = true;
 
-    if (this.incomeForm.invalid) {
+    if (this.expenseForm.invalid) {
       return;
     }
 
     this.loading = true;
-    this.incomeService.create(this.incomeForm.value)
+    this.expenseService.create(this.expenseForm.value)
       .pipe(first())
       .subscribe(
         data => {
-          console.log('Successfully created new income')
+          console.log('Successfully created new expense')
           this.router.navigate(['/transactions']);
         },
         error => {
-          console.log('Error while creating income: ', error);
+          console.log('Error while creating expense: ', error);
           this.loading = false;
         }
       )

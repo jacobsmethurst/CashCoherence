@@ -17,7 +17,7 @@
 
     <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
-        <td mat-cell *matCellDef="let transaction">{{ getCategory(transaction) }}</td>
+        <td mat-cell *matCellDef="let transaction">{{ transaction.category }}</td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
@@ -35,6 +35,6 @@
 <button mat-fab [matMenuTriggerFor]="newTransactionMenu" id="menuButton"><mat-icon id="addIcon">add</mat-icon></button>
 <mat-menu #newTransactionMenu yPosition="above">
     <button mat-menu-item routerLink="/incomeform">New income</button>
-    <button mat-menu-item>New expense</button>
-    <button mat-menu-item>New saving</button>
+    <button mat-menu-item routerLink="/expenseform">New expense</button>
+    <button mat-menu-item routerLink="/savingform">New saving or saving goal</button>
 </mat-menu>

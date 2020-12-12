@@ -8,10 +8,10 @@ module.exports = {
     authenticate,
     getById,
     addUser
-}
+};
 
 async function authenticate({ username, password }) {
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username }).populate('incomes');
     if (user && bcrypt.compareSync(password, user.hash)) {
         const { hash, ...userWithoutHash} = user.toObject();
         const token = jwt.sign({ sub: user.id }, config.secret);
@@ -23,7 +23,14 @@ async function authenticate({ username, password }) {
 }
 
 async function getById(id) {
-    return await User.find({ _id: id });
+    // return await User.findOne({ _id: id }).populate('incomes expenses goals savings');
+    return await User.findOne({ _id: id }).populate('incomes expenses goals').populate({
+        path: 'savings',
+        populate: {
+            path: 'goal',
+            model: 'SavingGoal'
+        }
+    });
 }
 
 async function addUser(userParam) {

@@ -2,6 +2,9 @@ import { AfterViewInit } from '@angular/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthService } from '../_services/auth.service';
+import { UserService } from '../_services/user.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-transactions',
@@ -10,51 +13,64 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class TransactionsComponent implements AfterViewInit {
 
-  testData = [
-    {
-      name: 'test',
-      date: new Date().toDateString(),
-      amount: 50.2,
-      type: 'income',
-      category: ''
-    },
-    {
-      name: 'test2',
-      date: new Date().toDateString(),
-      amount: 55.0,
-      type: 'expense',
-      category: 'newcat'
-    },
-    {
-      name: 'savingtest',
-      date: new Date().toDateString(),
-      amount: 200.23,
-      type: 'saving',
-      category: ''
-    }
-  ];
-
+  data = [];
+  dataSource;
   displayedColumns: string[] = ['date', 'name', 'amount', 'category', 'actions'];
-  dataSource = new MatTableDataSource(this.testData);
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { }
+  constructor(
+    private userService: UserService
+  ) {
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
+    userService.getById()
+      .pipe(first())
+      .subscribe(
+        user => {
+          console.log(user)
+          const incomes = user.incomes;
+          const expenses = user.expenses;
+          const savings = user.savings;
+      
+          for (let income of incomes) {
+            this.data.push({
+              name: income.name,
+              date: new Date(income.date).toDateString(),
+              amount: income.amount,
+              type: 'income',
+              category: 'Income'
+            });
+          }
+      
+          for (let saving of savings) {
+            this.data.push({
+              name: saving.goal.name,
+              date: new Date(saving.date).toDateString(),
+              amount: saving.amount,
+              type: 'saving',
+              category: 'Saving'
+            });
+          }
+      
+          for (let expense of expenses) {
+            this.data.push({
+              name: expense.name,
+              date: new Date(expense.date).toDateString(),
+              amount: expense.amount,
+              type: 'expense',
+              category: expense.category
+            });
+          }
+          this.dataSource = new MatTableDataSource(this.data); 
+          this.dataSource.sort = this.sort;
+        },
+        error => {
+          console.log('Error while logging in: ', error);
+        }
+      )   
   }
 
-  getCategory(transaction): string {
-    if (transaction.category) {
-      return transaction.category;
-    }
-
-    if (transaction.type === 'income') {
-      return 'Income';
-    }
-
-    return 'Saving';
+  ngAfterViewInit(): void {
   }
 
 }

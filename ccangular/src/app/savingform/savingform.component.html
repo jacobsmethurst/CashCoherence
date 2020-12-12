@@ -1,0 +1,141 @@
+<mat-tab-group>
+    <mat-tab label="Log saving">
+        <form [formGroup]="savingForm" class="savingForm" (ngSubmit)="onSavingSubmit()">
+            <mat-card class="savingCard">
+                <mat-card-header>
+                    <mat-card-title>Log new saving</mat-card-title>            
+                </mat-card-header>
+        
+                <mat-card-content>
+                    <div class="formGroup">
+                        <mat-form-field>
+                            <mat-select matInput placeholder="Goal" type="text" formControlName="goal" class="form-control" [ngClass]="{ 'is-invalid': savingSubmitted && sf.goal.errors }">
+                                <mat-option *ngFor="let goal of goalsList" value="{{ goal.id }}">{{ goal.name }}</mat-option>
+                            </mat-select>
+                            <mat-hint *ngIf="savingSubmitted && sf.goal.errors">
+                                <mat-hint *ngIf="sf.goal.errors.required">Saving goal is required</mat-hint>
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+        
+                    <div class="formGroup">
+                        <mat-form-field>
+                            <input matInput placeholder="Amount" type="number" formControlName="amount" class="form-control" [ngClass]="{ 'is-invalid': savingSubmitted && sf.amount.errors }">
+                            <mat-hint *ngIf="savingSubmitted && sf.amount.errors">
+                                <mat-hint *ngIf="sf.amount.errors.required">Amount is required</mat-hint>
+                                <mat-hint *ngIf="sf.amount.errors.min">Amount must be positive</mat-hint>
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+        
+                    <div class="formGroup">
+                        <mat-form-field>
+                            <mat-label>Date</mat-label>
+                            <input matInput [matDatepicker]="savingPicker" formControlName="date" class="form-control" [ngClass]="{ 'is-invalid': savingSubmitted && sf.date.errors }">
+                            <mat-datepicker-toggle matSuffix [for]="savingPicker"></mat-datepicker-toggle>
+                            <mat-datepicker #savingPicker></mat-datepicker>
+                            <mat-hint *ngIf="savingSubmitted && sf.date.errors">
+                                <mat-hint *ngIf="sf.date.errors.required">Date is required</mat-hint>
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+        
+                </mat-card-content>
+        
+                <mat-card-actions>
+                    <button mat-button [disabled]="savingLoading">Log saving</button>
+                    <button mat-button routerLink="/transactions">Cancel</button>
+                    <mat-spinner *ngIf="savingLoading" [diameter]="30"></mat-spinner>
+                </mat-card-actions>
+            </mat-card>
+        </form>     
+    </mat-tab>
+
+    <mat-tab label="Create new savings goal">
+        <form [formGroup]="goalForm" class="goalForm" (ngSubmit)="onGoalSubmit()">
+            <mat-card class="goalCard">
+                <mat-card-header>
+                    <mat-card-title>Create new savings goal</mat-card-title>            
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="formGroup">
+                        <mat-form-field>
+                            <input matInput placeholder="Name" type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': goalSubmitted && gf.name.errors }">
+                            <mat-hint *ngIf="goalSubmitted && gf.name.errors">
+                                <mat-hint *ngIf="gf.name.errors.required">Saving goal name</mat-hint>
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+        
+                    <div class="formGroup">
+                        <mat-form-field>
+                            <input matInput placeholder="Target amount" type="number" formControlName="target" class="form-control" [ngClass]="{ 'is-invalid': goalSubmitted && gf.target.errors }">
+                            <mat-hint *ngIf="goalSubmitted && gf.target.errors">
+                                <mat-hint *ngIf="gf.target.errors.required">Target amount is required</mat-hint>
+                                <mat-hint *ngIf="gf.target.errors.min">Target amount must be positive</mat-hint>
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+        
+                    <div class="formGroup">
+                        <mat-form-field>
+                            <mat-label>Deadline</mat-label>
+                            <input matInput [matDatepicker]="goalPicker" formControlName="deadline" class="form-control" [ngClass]="{ 'is-invalid': savingSubmitted && gf.deadline.errors }">
+                            <mat-datepicker-toggle matSuffix [for]="goalPicker"></mat-datepicker-toggle>
+                            <mat-datepicker #goalPicker></mat-datepicker>
+                            <mat-hint *ngIf="goalSubmitted && gf.deadline.errors">
+                                <mat-hint *ngIf="gf.deadline.errors.required">Date is required</mat-hint>
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+        
+                </mat-card-content>
+        
+                <mat-card-actions>
+                    <button mat-button [disabled]="goalLoading">Create savings goal</button>
+                    <button mat-button routerLink="/transactions">Cancel</button>
+                    <mat-spinner *ngIf="goalLoading" [diameter]="30"></mat-spinner>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </mat-tab>
+
+    <mat-tab label="Add user to savings goal">
+        <form [formGroup]="addUserForm" class="addUserForm" (ngSubmit)="onAddUserSubmit()">
+            <mat-card class="addUserCard">
+                <mat-card-header>
+                    <mat-card-title>Add user to saving goal</mat-card-title>            
+                </mat-card-header>
+        
+                <mat-card-content>
+                    <div class="formGroup">
+                        <mat-form-field>
+                            <mat-select matInput placeholder="Goal" type="text" formControlName="goal" class="form-control" [ngClass]="{ 'is-invalid': addUserSubmitted && auf.goal.errors }">
+                                <mat-option *ngFor="let goal of goalsList" value="{{ goal.id }}">{{ goal.name }}</mat-option>
+                            </mat-select>
+                            <mat-hint *ngIf="addUserSubmitted && sf.goal.errors">
+                                <mat-hint *ngIf="sf.goal.errors.required">Saving goal is required</mat-hint>
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+        
+                    <div class="formGroup">
+                        <mat-form-field>
+                            <input matInput placeholder="Username" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': addUserSubmitted && auf.username.errors }">
+                            <mat-hint *ngIf="savingSubmitted && auf.username.errors">
+                                <mat-hint *ngIf="auf.username.errors.required">Other user's username is required</mat-hint>
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+        
+                </mat-card-content>
+        
+                <mat-card-actions>
+                    <button mat-button [disabled]="addUserLoading">Add user to saving goal</button>
+                    <button mat-button routerLink="/transactions">Cancel</button>
+                    <mat-spinner *ngIf="addUserLoading" [diameter]="30"></mat-spinner>
+                </mat-card-actions>
+            </mat-card>
+        </form>    
+    </mat-tab>
+</mat-tab-group>

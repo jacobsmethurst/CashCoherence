@@ -11,6 +11,10 @@ app.use(cors());
 app.use(jwt());
 
 app.use('/user', require('./routes/user.router'));
+app.use('/income', require('./routes/income.router'));
+app.use('/expense', require('./routes/expense.router'));
+app.use('/savinggoal', require('./routes/savinggoal.router'));
+app.use('/saving', require('./routes/saving.router'));
 
 app.use(errorHandler);
 

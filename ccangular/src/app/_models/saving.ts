@@ -1,9 +1,10 @@
 import { SavingGoal } from './savinggoal';
+import { User } from './user';
 
 export class Saving {
-    name: string;
     date: Date;
     amount: number;
     goal: SavingGoal;
+    user: User;
     _id: string;
 }

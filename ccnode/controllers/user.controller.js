@@ -2,7 +2,8 @@ const userService = require('../services/user.service');
 
 module.exports = {
     authenticate,
-    register
+    register,
+    getById
 };
 
 function authenticate(req, res, next) {
@@ -16,3 +17,9 @@ function register(req, res, next) {
         .then(() => res.json({}))
         .catch(err => next(err));
 }
+
+function getById(req, res, next) {
+    userService.getById(req.user.sub)
+        .then(user => user ? res.json(user) : res.status(400).json({ message: 'Could not find user information' }))
+        .catch(err => next(err));
+    }

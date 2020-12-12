@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { ExpenseformComponent } from './expenseform/expenseform.component';
+import { SavingformComponent } from './savingform/savingform.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { IncomeformComponent } from './incomeform/incomeform.component';
 import { LoginComponent } from './login/login.component';
@@ -16,6 +18,8 @@ const routes: Routes = [
     { path: 'graphs', component: GraphsComponent, canActivate: [AuthGuard] },
     { path: 'shared', component: SharedComponent, canActivate: [AuthGuard] },
     { path: 'incomeform', component: IncomeformComponent, canActivate: [AuthGuard] },
+    { path: 'expenseform', component: ExpenseformComponent, canActivate: [AuthGuard] },
+    { path: 'savingform', component: SavingformComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: 'transactions' }
 ];
 
