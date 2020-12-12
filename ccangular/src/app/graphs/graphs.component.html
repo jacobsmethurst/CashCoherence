@@ -1,1 +1,19 @@
-<p>graphs works!</p>
+<mat-card class="pieDatesCard">
+    <div>
+        <mat-form-field>
+            <input matInput [matDatepicker]="startPicker" [formControl]="startDateFormControl" placeholder="Start date" (dateChange)="updateStart()">
+            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>    
+    </div>
+    
+    <div>
+        <mat-form-field>
+            <input matInput [matDatepicker]="endPicker" [formControl]="endDateFormControl" placeholder="End date" (dateChange)="updateEnd">
+            <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+    </div>
+</mat-card>
+
+<p-chart width="600" height="600" type="pie" [data]="pieData"></p-chart>

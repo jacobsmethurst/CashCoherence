@@ -78,7 +78,7 @@ export class TransactionsComponent implements AfterViewInit {
         error => {
           console.log('Error while logging in: ', error);
         }
-      )   
+      );  
   }
 
   ngAfterViewInit(): void {
