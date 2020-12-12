@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { User } from './_models/user';
 import { AuthService } from './_services/auth.service';
@@ -13,7 +14,12 @@ export class AppComponent {
   lastUpdated = new Date().toLocaleString();
   currentUser: User;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(
+      private router: Router, 
+      private authService: AuthService,
+      private titleService: Title
+    ) {
+    this.titleService.setTitle('Cash Coherence');
     this.authService.currentUser.subscribe(user => {
       this.currentUser = user;
     });
