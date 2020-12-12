@@ -100,7 +100,12 @@ export class GraphsComponent implements OnInit {
     labels.forEach(label => colorsMap.set(label, 'rgb(' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ')'));
     colorsMap.set('Savings', 'rgb(0, 15, 43)');
 
-    let savingSum = this.inRangeSavings.reduce((a, b) => a.amount + b.amount);
+    let savingSum;
+    if (this.inRangeSavings.length > 0) {
+      savingSum = this.inRangeSavings.reduce((a, b) => a.amount + b.amount);
+    } else {
+      savingSum = 0;
+    }
     totalsMap.set('Savings', savingSum);
 
     this.pieData = {
