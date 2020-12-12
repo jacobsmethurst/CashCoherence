@@ -4,7 +4,8 @@ const Expense = db.Expense;
 const User = db.User;
 
 module.exports = {
-    create
+    create,
+    deleteExpense
 };
 
 async function create(req) {
@@ -28,4 +29,13 @@ async function create(req) {
     await expense.save();
     await User.updateOne({'_id': user}, {$set: {'expenses': expensesNew}});
 
+}
+
+async function deleteExpense(req) {
+    const userObj = await User.findOne({_id: req.user.sub});
+    let expensesNew = userObj.expenses;
+    expensesNew.splice(expensesNew.indexOf(req.params.id), 1);
+
+    await Expense.deleteOne({'_id': req.params.id});
+    await User.updateOne({'_id': userObj._id}, {$set: {'expenses': expensesNew}});
 }

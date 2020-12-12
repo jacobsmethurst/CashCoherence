@@ -10,4 +10,8 @@ export class SavingService {
         console.log(saving);
         return this.http.post(`http://localhost:4000/saving/create`, saving);
     }
+
+    delete(id: string) {
+        return this.http.delete(`http://localhost:4000/saving/${id}`);
+    }
 }

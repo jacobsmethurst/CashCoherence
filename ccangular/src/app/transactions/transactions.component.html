@@ -23,8 +23,7 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let transaction">
-            <button mat-button><mat-icon>edit</mat-icon></button>
-            <button mat-button><mat-icon>delete</mat-icon></button>
+            <button mat-button (click)="deleteTransaction(transaction)"><mat-icon>delete</mat-icon></button>
         </td>
     </ng-container>
 

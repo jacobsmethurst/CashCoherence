@@ -9,4 +9,8 @@ export class IncomeService {
     create(income: Income) {
         return this.http.post(`http://localhost:4000/income/create`, income);
     }
+
+    delete(id: string) {
+        return this.http.delete(`http://localhost:4000/income/${id}`);
+    }
 }

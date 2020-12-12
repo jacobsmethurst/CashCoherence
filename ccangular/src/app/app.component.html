@@ -5,10 +5,6 @@
     <button mat-button routerLink="/shared" routerLinkActive="activeTab">Shared Goals</button>
     <button mat-button (click)="logout()">Logout ({{ isUser.username }})</button>
   </div>
-
-  <div id="right">
-    <button mat-button id="lastUpdated"><mat-icon>update</mat-icon> Last updated: {{ lastUpdated }}</button>
-  </div>
 </div>
 
 <router-outlet></router-outlet>
