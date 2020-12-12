@@ -7,8 +7,8 @@ import { GraphsComponent } from './graphs/graphs.component';
 import { IncomeformComponent } from './incomeform/incomeform.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { SharedComponent } from './shared/shared.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { GoalsComponent } from './goals/goals.component';
 import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'transactions', component: TransactionsComponent, canActivate: [AuthGuard] },
     { path: 'graphs', component: GraphsComponent, canActivate: [AuthGuard] },
-    { path: 'shared', component: SharedComponent, canActivate: [AuthGuard] },
+    { path: 'goals', component: GoalsComponent, canActivate: [AuthGuard] },
     { path: 'incomeform', component: IncomeformComponent, canActivate: [AuthGuard] },
     { path: 'expenseform', component: ExpenseformComponent, canActivate: [AuthGuard] },
     { path: 'savingform', component: SavingformComponent, canActivate: [AuthGuard] },

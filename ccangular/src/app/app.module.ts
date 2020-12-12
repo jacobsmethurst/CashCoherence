@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { GraphsComponent } from './graphs/graphs.component';
-import { SharedComponent } from './shared/shared.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { IncomeComponent } from './income/income.component';
@@ -17,18 +16,18 @@ import { ExpenseComponent } from './expense/expense.component';
 import { SavingComponent } from './saving/saving.component';
 import { SavinggoalComponent } from './savinggoal/savinggoal.component';
 import { IncomeformComponent } from './incomeform/incomeform.component';
+import { GoalsComponent } from './goals/goals.component';
+import { ExpenseformComponent } from './expenseform/expenseform.component';
+import { SavingformComponent } from './savingform/savingform.component';
 
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
-import { ExpenseformComponent } from './expenseform/expenseform.component';
-import { SavingformComponent } from './savingform/savingform.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TransactionsComponent,
     GraphsComponent,
-    SharedComponent,
     LoginComponent,
     RegisterComponent,
     IncomeComponent,
@@ -37,7 +36,8 @@ import { SavingformComponent } from './savingform/savingform.component';
     SavinggoalComponent,
     IncomeformComponent,
     ExpenseformComponent,
-    SavingformComponent
+    SavingformComponent,
+    GoalsComponent
   ],
   imports: [
     BrowserModule,
