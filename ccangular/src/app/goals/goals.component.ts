@@ -9,7 +9,7 @@ import { UserService } from '../_services/user.service';
 })
 export class GoalsComponent implements OnInit {
 
-  goal;
+  goals;
   savings;
 
   constructor(
@@ -19,9 +19,9 @@ export class GoalsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         user => {
-          this.goal = user.goals[0];
+          this.goals = user.goals;
           this.savings = user.savings;
-          console.log(this.goal);
+          console.log(this.goals);
           console.log(this.savings);
         },
         error => {
