@@ -4,6 +4,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('./_helpers/jwt');
 const errorHandler = require('./_helpers/error-handler');
+const path = require('path');
+app.use('/', express.static(path.join(__dirname + '../../ccangular/dist/ccangular')));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
