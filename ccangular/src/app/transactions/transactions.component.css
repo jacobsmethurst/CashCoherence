@@ -2,10 +2,14 @@ table {
     width: 96%;
     position: fixed;
     left: 50%;
-    top: 100px;
+    top: 150px;
     margin-left: -48%;
-    border-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     overflow: hidden !important;
+    border: 5px solid #000f2b;
+    border-top: none;
+    box-shadow: none;
 }
 
 .mat-column-date, .mat-column-name, .mat-column-amount, .mat-column-category {
@@ -29,6 +33,17 @@ table {
 
 .mat-cell {
     font-size: 20px;
+}
+
+#paginator {
+    position: fixed;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    left: 2%;
+    right: calc(2.1% - 1px);
+    top: 100px;
+    border: 5px solid #000f2b;
+    border-bottom: none;
 }
 
 #menuButton {

@@ -14,6 +14,10 @@
             <mat-datepicker #endPicker></mat-datepicker>
         </mat-form-field>
     </div>
+
+    <mat-card-header>Total income for period: {{ totalIncome }}</mat-card-header>
+    <mat-card-header>Total expenses for period: {{ totalExpenses }}</mat-card-header>
+    <mat-card-header>Total saved for period: {{ totalSaved }}</mat-card-header>
 </mat-card>
 
-<p-chart width="600" height="600" type="pie" [data]="pieData"></p-chart>
+<p-chart width="500" height="500" type="pie" [data]="pieData"></p-chart>

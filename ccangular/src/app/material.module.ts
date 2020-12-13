@@ -12,6 +12,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
     exports: [
@@ -28,7 +29,8 @@ import { MatSelectModule } from '@angular/material/select';
         MatDatepickerModule,
         MatNativeDateModule,
         MatOptionModule,
-        MatSelectModule
+        MatSelectModule,
+        MatPaginatorModule
     ]
 })
 export class MaterialModule {}

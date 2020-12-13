@@ -21,6 +21,9 @@ export class GraphsComponent implements OnInit {
   pieData: any;
   startDateFormControl;
   endDateFormControl; 
+  totalIncome = 0;
+  totalExpenses = 0;
+  totalSaved = 0;
 
   constructor(
     private userService: UserService
@@ -69,7 +72,8 @@ export class GraphsComponent implements OnInit {
               date: new Date(expense.date),
               amount: expense.amount,
               type: 'expense',
-              category: expense.category
+              category: expense.category,
+              color: 'rgb(' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ')'
             });
           }
 
@@ -89,6 +93,10 @@ export class GraphsComponent implements OnInit {
     this.inRangeSavings = this.allSavings.filter(saving => saving.date >= this.startDate && saving.date <= this.endDate);
     this.inRangeExpenses = this.allExpenses.filter(expense => expense.date >= this.startDate && expense.date <= this.endDate);
 
+    this.inRangeIncomes.forEach(income => this.totalIncome += income.amount);
+    this.inRangeSavings.forEach(saving => this.totalSaved += saving.amount);
+    this.inRangeExpenses.forEach(expense => this.totalExpenses += expense.amount);
+
     let labelSet = new Set();
     let totalsMap = new Map(); 
     
@@ -97,7 +105,10 @@ export class GraphsComponent implements OnInit {
     labels.forEach(label => totalsMap.set(label, 0));
     this.inRangeExpenses.forEach(expense => totalsMap.set(expense.category, totalsMap.get(expense.category) + expense.amount));
     let colorsMap = new Map();
-    labels.forEach(label => colorsMap.set(label, 'rgb(' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ')'));
+    labels.forEach(label => {
+      let expense = this.inRangeExpenses.find(exp => exp.category === label);
+      colorsMap.set(label, expense.color);
+    });
     colorsMap.set('Savings', 'rgb(0, 15, 43)');
 
     let savingSum = 0;

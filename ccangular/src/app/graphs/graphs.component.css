@@ -1,5 +1,7 @@
 .pieDatesCard {
-    max-width: 300px;
+    max-width: 400px;
     left: 20px;
-    top: 20px;
+    top: 100px;
+    position: fixed;
+    z-index: 999;
 }

@@ -1,6 +1,6 @@
 import { AfterViewInit } from '@angular/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from '../_services/auth.service';
 import { UserService } from '../_services/user.service';
@@ -9,6 +9,7 @@ import { IncomeService } from '../_services/income.service';
 import { SavingService } from '../_services/saving.service';
 import { ExpenseService } from '../_services/expense.service';
 import { Router } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-transactions',
@@ -22,6 +23,7 @@ export class TransactionsComponent implements AfterViewInit {
   displayedColumns: string[] = ['date', 'name', 'amount', 'category', 'actions'];
 
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private userService: UserService,
@@ -72,8 +74,19 @@ export class TransactionsComponent implements AfterViewInit {
               category: expense.category
             });
           }
-          this.dataSource = new MatTableDataSource(this.data); 
-          this.dataSource.sort = this.sort;
+          this.dataSource = new MatTableDataSource(this.data);
+
+          this.dataSource.sortingDataAccessor = (item, property) => {
+            if (property === 'date') {
+              // console.log('here');
+              return new Date(item.date);
+            }
+            return item[property];
+          }
+
+          this.sort.sort(({id: 'date', start: 'desc'}) as MatSortable);
+          this.dataSource.sort = this.sort; 
+          this.dataSource.paginator = this.paginator;
         },
         error => {
           console.log('Error while logging in: ', error);
